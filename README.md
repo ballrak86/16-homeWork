@@ -3,33 +3,33 @@ logFileFull.log - полный лог выполнения
 used_commands.txt - команды которые использовал  
 
 Vagrant_folder - все что понадобится для поднятия VM и краткое описание файлов в ней  
+```
 Vagrantfile           - вагрант файл  
-provisioning          - директория с файлами для настройки ВМ через ansible разбитый на роли
-├── lab.yml
-└── roles
-    ├── log
-    │   ├── handlers
-    │   │   └── main.yml
-    │   ├── tasks
-    │   │   └── main.yml
-    │   └── templates
-    │       └── rsyslog.conf.j2
-    └── web
-        ├── files
-        │   ├── my-inimfile.pp
-        │   ├── my-inimfile.te
-        │   ├── my-rsyslogd.pp
-        │   └── my-rsyslogd.te
-        ├── handlers
-        │   └── main.yml
-        ├── tasks
-        │   └── main.yml
-        └── templates
-            ├── audit.conf.j2
-            ├── nginx.conf.j2
-            └── nginx.rules.j2
- 
-
+provisioning          - директория с файлами для настройки ВМ через ansible разбитый на роли  
+├── lab.yml  
+└── roles  
+    ├── log  
+    │   ├── handlers  
+    │   │   └── main.yml  
+    │   ├── tasks  
+    │   │   └── main.yml  
+    │   └── templates  
+    │       └── rsyslog.conf.j2  
+    └── web  
+        ├── files  
+        │   ├── my-inimfile.pp  
+        │   ├── my-inimfile.te  
+        │   ├── my-rsyslogd.pp  
+        │   └── my-rsyslogd.te  
+        ├── handlers  
+        │   └── main.yml  
+        ├── tasks  
+        │   └── main.yml  
+        └── templates  
+            ├── audit.conf.j2  
+            ├── nginx.conf.j2  
+            └── nginx.rules.j2  
+```
 ## Описание как запустить виртуальную машину (кратко)
 Поднять ВМ и подключиться к ВМ log
 ```
