@@ -1,0 +1,16 @@
+
+module my-inimfile 1.0;
+
+require {
+	type syslogd_t;
+	type auditd_log_t;
+	class dir { getattr open read search };
+	class file { getattr ioctl open };
+}
+
+#============= syslogd_t ==============
+allow syslogd_t auditd_log_t:dir { open read };
+
+#!!!! This avc is allowed in the current policy
+allow syslogd_t auditd_log_t:dir { getattr search };
+allow syslogd_t auditd_log_t:file { getattr ioctl open };

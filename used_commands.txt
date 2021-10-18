@@ -1,0 +1,4 @@
+vagrant ssh log
+sudo -i
+grep web_config_changed /var/log/rsyslog/web/audit.log
+cat /var/log/rsyslog/web/nginx.log

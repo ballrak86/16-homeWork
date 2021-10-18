@@ -1,0 +1,15 @@
+
+module my-rsyslogd 1.0;
+
+require {
+	type syslogd_t;
+	type auditd_log_t;
+	class dir search;
+	class file read;
+}
+
+#============= syslogd_t ==============
+
+#!!!! This avc is allowed in the current policy
+allow syslogd_t auditd_log_t:dir search;
+allow syslogd_t auditd_log_t:file read;

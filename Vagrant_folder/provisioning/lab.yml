@@ -1,0 +1,13 @@
+---
+###
+- hosts: log
+  become: true
+  roles:
+    - log
+
+- hosts: web
+  become: true
+  vars:
+    nginx_listen_port: 80
+  roles:
+    - web

@@ -1,0 +1,42 @@
+Vagrant.configure(2) do |config|
+  config.vm.box = "centos/7"
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "provisioning/lab.yml"
+    ansible.become = "true"
+  end
+
+  config.vm.define "log" do |log|
+    log.vm.hostname = "log"
+    log.vm.network "private_network", ip: "192.168.11.102", adapter: 2, netmask: "255.255.255.0", virtualbox__intnet: "elk-lab"
+    log.vm.provider :virtualbox do |vb|
+      vb.name = "log"
+      vb.memory = 512
+      vb.cpus = 1
+    end
+    log.vm.provision "shell", run: "always", inline: <<-SHELL
+    echo 192.168.11.101 web >> /etc/hosts
+    echo 192.168.11.102 log >> /etc/hosts
+    SHELL
+  end
+
+  config.vm.define "web" do |web|
+    web.vm.hostname = "web"
+    web.vm.network "private_network", ip: "192.168.11.101", adapter: 2, netmask: "255.255.255.0", virtualbox__intnet: "elk-lab"
+    web.vm.provider :virtualbox do |vb|
+      vb.name = "web"
+      vb.memory = 512
+      vb.cpus = 1
+    end
+    web.vm.provision "shell", run: "always", inline: <<-SHELL
+    echo 192.168.11.101 web >> /etc/hosts
+    echo 192.168.11.102 log >> /etc/hosts
+    semodule -i /tmp/my-rsyslogd.pp
+    semodule -i /tmp/my-inimfile.pp
+    service auditd restart
+    touch /etc/nginx/nginx.conf
+    curl 192.168.11.101 > /dev/null
+    SHELL
+  end
+
+end

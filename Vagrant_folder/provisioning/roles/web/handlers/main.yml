@@ -1,0 +1,11 @@
+---
+  - name: reload rsyslog
+    systemd:
+      name: rsyslog
+      state: restarted
+
+  - name: reload nginx
+    systemd:
+      name: nginx
+      state: reloaded
+

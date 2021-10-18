@@ -1,0 +1,204 @@
+root@otssTestServer:/home/lx/git/loging# vagrant up
+Bringing machine 'log' up with 'virtualbox' provider...
+Bringing machine 'web' up with 'virtualbox' provider...
+==> log: Importing base box 'centos/7'...
+==> log: Matching MAC address for NAT networking...
+==> log: Checking if box 'centos/7' version '2004.01' is up to date...
+==> log: Setting the name of the VM: log
+==> log: Clearing any previously set network interfaces...
+==> log: Preparing network interfaces based on configuration...
+    log: Adapter 1: nat
+    log: Adapter 2: intnet
+==> log: Forwarding ports...
+    log: 22 (guest) => 2222 (host) (adapter 1)
+==> log: Running 'pre-boot' VM customizations...
+==> log: Booting VM...
+==> log: Waiting for machine to boot. This may take a few minutes...
+    log: SSH address: 127.0.0.1:2222
+    log: SSH username: vagrant
+    log: SSH auth method: private key
+    log:
+    log: Vagrant insecure key detected. Vagrant will automatically replace
+    log: this with a newly generated keypair for better security.
+    log:
+    log: Inserting generated public key within guest...
+    log: Removing insecure key from the guest if it's present...
+    log: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> log: Machine booted and ready!
+==> log: Checking for guest additions in VM...
+    log: No guest additions were detected on the base box for this VM! Guest
+    log: additions are required for forwarded ports, shared folders, host only
+    log: networking, and more. If SSH fails on this machine, please install
+    log: the guest additions and repackage the box to continue.
+    log:
+    log: This is not an error message; everything may continue to work properly,
+    log: in which case you may ignore this message.
+==> log: Setting hostname...
+==> log: Configuring and enabling network interfaces...
+==> log: Rsyncing folder: /home/lx/git/loging/ => /vagrant
+==> log: Running provisioner: ansible...
+Vagrant gathered an unknown Ansible version:
+
+ansible [core 2.11.5]
+  config file = None
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python2.7/dist-packages/ansible
+  ansible collection location = /root/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/local/bin/ansible
+  python version = 2.7.17 (default, Feb 27 2021, 15:10:58) [GCC 7.5.0]
+  jinja version = 2.11.3
+  libyaml = True
+
+and falls back on the compatibility mode '1.8'.
+
+Alternatively, the compatibility mode can be specified in your Vagrantfile:
+https://www.vagrantup.com/docs/provisioning/ansible_common.html#compatibility_mode
+
+    log: Running ansible-playbook...
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 2.7.17 (default, Feb 27
+ 2021, 15:10:58) [GCC 7.5.0]. This feature will be removed from ansible-core in
+ version 2.12. Deprecation warnings can be disabled by setting
+deprecation_warnings=False in ansible.cfg.
+
+PLAY [log] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [log]
+
+TASK [log : RSYSLOG | Create RSYSLOG config file from template] ****************
+changed: [log]
+
+RUNNING HANDLER [log : reload rsyslog] *****************************************
+changed: [log]
+[WARNING]: Could not match supplied host pattern, ignoring: web
+
+PLAY [web] *********************************************************************
+skipping: no hosts matched
+
+PLAY RECAP *********************************************************************
+log                        : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+==> log: Running provisioner: shell...
+    log: Running: inline script
+==> web: Importing base box 'centos/7'...
+==> web: Matching MAC address for NAT networking...
+==> web: Checking if box 'centos/7' version '2004.01' is up to date...
+==> web: Setting the name of the VM: web
+==> web: Fixed port collision for 22 => 2222. Now on port 2200.
+==> web: Clearing any previously set network interfaces...
+==> web: Preparing network interfaces based on configuration...
+    web: Adapter 1: nat
+    web: Adapter 2: intnet
+==> web: Forwarding ports...
+    web: 22 (guest) => 2200 (host) (adapter 1)
+==> web: Running 'pre-boot' VM customizations...
+==> web: Booting VM...
+==> web: Waiting for machine to boot. This may take a few minutes...
+    web: SSH address: 127.0.0.1:2200
+    web: SSH username: vagrant
+    web: SSH auth method: private key
+    web:
+    web: Vagrant insecure key detected. Vagrant will automatically replace
+    web: this with a newly generated keypair for better security.
+    web:
+    web: Inserting generated public key within guest...
+    web: Removing insecure key from the guest if it's present...
+    web: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> web: Machine booted and ready!
+==> web: Checking for guest additions in VM...
+    web: No guest additions were detected on the base box for this VM! Guest
+    web: additions are required for forwarded ports, shared folders, host only
+    web: networking, and more. If SSH fails on this machine, please install
+    web: the guest additions and repackage the box to continue.
+    web:
+    web: This is not an error message; everything may continue to work properly,
+    web: in which case you may ignore this message.
+==> web: Setting hostname...
+==> web: Configuring and enabling network interfaces...
+==> web: Rsyncing folder: /home/lx/git/loging/ => /vagrant
+==> web: Running provisioner: ansible...
+Vagrant gathered an unknown Ansible version:
+
+ansible [core 2.11.5]
+  config file = None
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python2.7/dist-packages/ansible
+  ansible collection location = /root/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/local/bin/ansible
+  python version = 2.7.17 (default, Feb 27 2021, 15:10:58) [GCC 7.5.0]
+  jinja version = 2.11.3
+  libyaml = True
+
+and falls back on the compatibility mode '1.8'.
+
+Alternatively, the compatibility mode can be specified in your Vagrantfile:
+https://www.vagrantup.com/docs/provisioning/ansible_common.html#compatibility_mode
+
+    web: Running ansible-playbook...
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 2.7.17 (default, Feb 27
+ 2021, 15:10:58) [GCC 7.5.0]. This feature will be removed from ansible-core in
+ version 2.12. Deprecation warnings can be disabled by setting
+deprecation_warnings=False in ansible.cfg.
+
+PLAY [log] *********************************************************************
+skipping: no hosts matched
+
+PLAY [web] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [web]
+
+TASK [web : NGINX | Install EPEL Repo package from standart repo] **************
+changed: [web]
+
+TASK [web : NGINX | Install NGINX package from EPEL Repo] **********************
+changed: [web]
+
+TASK [web : NGINX | Create NGINX config file from template] ********************
+changed: [web]
+
+TASK [web : RSYSLOG | Edit config rsyslog] *************************************
+changed: [web]
+
+TASK [web : RSYSLOG | Edit config rsyslog] *************************************
+changed: [web]
+
+TASK [web : AUDIT | Create config audit] ***************************************
+changed: [web]
+
+TASK [web : selinux module] ****************************************************
+changed: [web] => (item=files/my-inimfile.pp)
+changed: [web] => (item=files/my-rsyslogd.pp)
+
+RUNNING HANDLER [web : reload rsyslog] *****************************************
+changed: [web]
+
+RUNNING HANDLER [web : reload nginx] *******************************************
+changed: [web]
+
+PLAY RECAP *********************************************************************
+web                        : ok=10   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+==> web: Running provisioner: shell...
+    web: Running: inline script
+    web: Stopping logging:
+    web: [  OK  ]
+    web: Redirecting start to /bin/systemctl start auditd.service
+    web:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+    web:                                  Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  4833  100  4833    0     0   213k      0 --:--:-- --:--:-- --:--:--  235k
+root@otssTestServer:/home/lx/git/loging# vagrant ssh log
+Last login: Sun Oct 17 13:51:41 2021 from 10.0.2.2
+[vagrant@log ~]$ sudo -i
+[root@log ~]# grep web_config_changed /var/log/rsyslog/web/audit.log
+Oct 17 13:54:06 web tag_audit_log: type=CONFIG_CHANGE msg=audit(1634478844.904:1590): auid=4294967295 ses=4294967295 subj=system_u:system_r:unconfined_service_t:s0 op=add_rule key="web_config_changed" list=4 res=1
+Oct 17 13:54:06 web tag_audit_log: type=CONFIG_CHANGE msg=audit(1634478844.904:1591): auid=4294967295 ses=4294967295 subj=system_u:system_r:unconfined_service_t:s0 op=add_rule key="web_config_changed" list=4 res=1
+Oct 17 13:54:06 web tag_audit_log: type=SYSCALL msg=audit(1634478844.921:1593): arch=c000003e syscall=2 success=yes exit=3 a0=7fff82dbdd9c a1=941 a2=1b6 a3=7fff82dbbfe0 items=2 ppid=4733 pid=4787 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=2 comm="touch" exe="/usr/bin/touch" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key="web_config_changed"
+Oct 17 13:54:06 web tag_audit_log: type=CONFIG_CHANGE msg=audit(1634478844.904:1590): auid=4294967295 ses=4294967295 subj=system_u:system_r:unconfined_service_t:s0 op=add_rule key="web_config_changed" list=4 res=1
+Oct 17 13:54:06 web tag_audit_log: type=CONFIG_CHANGE msg=audit(1634478844.904:1591): auid=4294967295 ses=4294967295 subj=system_u:system_r:unconfined_service_t:s0 op=add_rule key="web_config_changed" list=4 res=1
+Oct 17 13:54:06 web tag_audit_log: type=SYSCALL msg=audit(1634478844.921:1593): arch=c000003e syscall=2 success=yes exit=3 a0=7fff82dbdd9c a1=941 a2=1b6 a3=7fff82dbbfe0 items=2 ppid=4733 pid=4787 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=2 comm="touch" exe="/usr/bin/touch" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key="web_config_changed"
+[root@log ~]# cat /var/log/rsyslog/web/nginx.log
+Oct 17 13:54:04 web nginx: 192.168.11.101 - - [17/Oct/2021:13:54:04 +0000] "GET / HTTP/1.1" 200 4833 "-" "curl/7.29.0"

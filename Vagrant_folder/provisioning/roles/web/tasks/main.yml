@@ -1,0 +1,46 @@
+---
+  - name: NGINX | Install EPEL Repo package from standart repo
+    yum:
+      name: epel-release
+      state: present
+
+  - name: NGINX | Install NGINX package from EPEL Repo
+    yum:
+      name: nginx
+      state: latest
+
+  - name: NGINX | Create NGINX config file from template
+    template:
+      src: templates/nginx.conf.j2
+      dest: /etc/nginx/nginx.conf
+    notify:
+      - reload nginx
+
+  - name: RSYSLOG | Edit config rsyslog
+    lineinfile: dest=/etc/rsyslog.conf
+       regexp='^#*.* @@remote-host:514'
+       line='*.* @@log:514'
+       state=present
+    notify:
+      - reload rsyslog
+
+  - name: RSYSLOG | Edit config rsyslog
+    template:
+      src: templates/audit.conf.j2
+      dest: /etc/rsyslog.d/audit.conf
+    notify:
+      - reload rsyslog
+
+  - name: AUDIT | Create config audit
+    template:
+      src: templates/nginx.rules.j2
+      dest: /etc/audit/rules.d/nginx.rules
+
+  - name: selinux module
+    copy:
+      src: '{{ item }}'
+      dest: /tmp/
+      mode: 666
+    loop:
+     - files/my-inimfile.pp
+     - files/my-rsyslogd.pp
